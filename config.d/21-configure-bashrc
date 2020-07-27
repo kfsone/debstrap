@@ -1,0 +1,25 @@
+# Comment that denotes our bash inclusion.
+rc_include="include-my-bashrc"
+bashrc="${HOME}/.bashrc"
+etcrc="${HOME}/etc/bash.rc"
+
+# if the rc file doesn't exist, create a symlink
+if [ ! -e "${bashrc}" ]; then
+  ln -s "${etcrc}" "${bashrc}" || die "Can't create ${bashrc} symlink."
+else
+  # Create a copy to avoid messing up login attempts
+  cp "${bashrc}" "${bashrc}.new" || die "Can't create '${bashrc}.new'"
+  trap "rm -f \"${bashrc}.new\"" EXIT
+
+  # make sure there's a line with the comment.
+  if ! grep -q "${rc_include}" "${bashrc}.new"; then
+    echo >>"${bashrc}.new" "# $rc_include" || die "Couldn't append to ${bashrc}.new"
+  fi
+
+  # replace the line with the current incantation.
+  sed -i -e "s;^.*\#.*${rc_include}.*$;[ -f \"${etcrc}\" ] \&\& . \"${etcrc}\"  \# ${rc_include};" "${bashrc}.new" \
+	|| die "Could not inject ${rc_include} into ${bashrc}.new"
+
+  # replace
+  mv "${bashrc}.new" "${bashrc}" || die "Can't overwrite '${bashrc}'"
+fi

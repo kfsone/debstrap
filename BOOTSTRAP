@@ -1,0 +1,40 @@
+#! /bin/bash
+#
+# Configure a kfsone machine as a working environment.
+
+# Variables
+env_source="${HOME}/etc"
+apt_updated=0
+
+# Load bash helpers
+source "${env_source}/bashlib.sh" || die "Cannot load bashlib."
+
+# Helpers
+
+function apt_update() {
+  if [ $apt_updated -eq 0 ]; then
+    debug "Updating apt."
+    sudo apt update -y || die "Apt update failed."
+    apt_updated=1
+  fi
+}
+
+
+# Main
+
+echo "Sudo privileges required"
+sudo -v || die "Don't have sudo permission."
+
+# Jump to home directory.
+info Configuring environment
+cd "${HOME}" || die "Couldn't access $HOME."
+
+
+config_d="${env_source}/config.d"
+if [ -e "${config_d}" -a -n "$(ls ${config_d})" ]; then
+    for config in "${config_d}"/*; do
+	debug "${config}"
+        source $config || die "${config} failed"
+    done
+fi
+

@@ -1,0 +1,18 @@
+# -*- coding: utf8 -*-
+# vim:fileencoding=utf8
+# Bash Fragment: Oliver 'kfs1' Smith's main bash profile.
+
+env_source="${HOME}/etc"
+
+# If a machine-local profile exists, execute it first.
+if [ -f "${env_source}/profile" ]; then
+  . "${env_source}/profile"
+fi
+
+# Execute any scripts that are installed in the bash.rc.d folder
+rc_dir="${env_source}/bash.rc.d"
+if [ -d "${rc_dir}" ]; then
+  for file in "${rc_dir}"/*; do
+    . "${file}"
+  done
+fi

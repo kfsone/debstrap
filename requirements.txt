@@ -1,0 +1,12 @@
+requests
+jupyter
+tox
+pytest
+mypy
+pylint
+rope
+flake8
+nose
+mock
+PyYAML
+pyyaml-include

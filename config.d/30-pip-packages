@@ -1,0 +1,6 @@
+# Refresh pip packages
+requirements="${env_source}/requirements.txt"
+if [ -e "${requirements}" ]; then
+  pip install -q --upgrade -r "${requirements}" || die "Pip refresh failed."
+fi
+  

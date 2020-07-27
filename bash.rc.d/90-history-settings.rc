@@ -1,0 +1,12 @@
+# -*- coding: utf8 -*-
+# vim:fileencoding=utf8
+# Remember every command, only worry about size, and allow upto 100MB for history
+HISTCONTROL=ignoreboth
+HISTSIZE=-1
+HISTFILESIZE=$((100 * 1024 * 1024))
+
+# Append rather than overwrite history
+shopt -s histappend
+
+# Always check the terminal window size for adjustments
+shopt -s checkwinsize

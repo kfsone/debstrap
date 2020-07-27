@@ -1,0 +1,5 @@
+if [ ! -e .vimrc -a "${env_source}/vimrc" ]; then
+  debug "Installing vimrc."
+  cp "${env_source}/vimrc" .vimrc || die "Couldn't install vimrc"
+fi
+

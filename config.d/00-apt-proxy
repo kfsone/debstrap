@@ -1,0 +1,8 @@
+# Configure apt to use the local proxy.
+apt_proxy_cfg="/etc/apt/apt.conf.2/02proxy"
+if [ ! -e "${apt_proxy_cfg}" -a -e "${env_source}/apt-proxy-cfg" ]; then
+  debug "Installing apt proxy config."
+  sudo cp "${env_source}/apt-proxy-cfg" "${apt_proxy_cfg}" || die "Couldn't copy apt-proxy-cfg."
+  apt_update
+fi
+

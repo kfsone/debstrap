@@ -1,0 +1,8 @@
+# -*- coding: utf8 -*-
+# vim:fileencoding=utf8
+
+# Common paths
+add_paths "${HOME}/bin" "${HOME}/.local/bin"
+add_paths "/bin" "/usr/bin" "/usr/local/bin" "/opt/bin"
+add_paths "/sbin" "/usr/sbin" "/usr/local/sbin" "/opt/sbin"
+add_paths "/usr/games" "/usr/local/games" "/opt/games"

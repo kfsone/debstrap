@@ -1,0 +1,11 @@
+# Ensure we have a virtual environment
+if [ "$(type -t deactivate 2>/dev/null)" = "function" ]; then
+  deactivate
+fi
+if [ ! -d ".venv3" ]; then
+  debug "Creating python3 virtual environment."
+  virtualenv -p python3 .venv3 || die "Creating py3 virtualenv failed."
+fi
+
+. .venv3/bin/activate || die "Activating virtualenv failed."
+hash -r
