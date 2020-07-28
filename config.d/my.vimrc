@@ -44,7 +44,7 @@ set lazyredraw modeline modelines=1 showtabline=1 laststatus=2
 augroup configgroup
     autocmd!
     " remove trailing spaces
-    "autocmd FileType c,cpp,python,*.sh,.vimrc,.bashrc,*.xml,shell,html,go,txt,json,yaml,md,powershell,ps1,*.ps1 autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType c,cpp,python,*.sh,.vimrc,.bashrc,*.xml,shell,html,go,txt,json,yaml,md,powershell,ps1,*.ps1 autocmd BufWritePre <buffer> %s/\s\+$//e
 
     " tabs vs spaces
     autocmd FileType python,vim,shell                   setlocal ts=4 sw=4 expandtab number colorcolumn=100 colorcolumn=120
@@ -68,4 +68,9 @@ function! Ninja(...)
 endfunction
 
 command! -nargs=+ Ninja :call Ninja(<f-args>)
+
+let g:flake8_show_in_gutter = 1
+let g:flake8_show_in_file = 1
+
+autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
 

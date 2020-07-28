@@ -8,3 +8,15 @@ function add_vim_addon () {
 }
 
 add_vim_addon editorconfig
+
+# The flake8 addon requires a git clone. Yay for that.
+flake8_addon_dir="${HOME}/.vim/pack/flake8/start"
+flake8_addon_uri="https://github.com/nvie/vim-flake8.git"
+if [ ! -d "${flake8_addon_dir}" ]; then
+	mkdir -p "${flake8_addon_dir}" || die "Cannot create ${flake8_addon_dir}"
+	cd "${flake8_addon_dir}" || die "Cannot cd to ${flake8_addon_dir}"
+	git clone --depth 1 "${flake8_addon_uri}"
+fi
+
+cd "${flake8_addon_dir}/vim-flake8"
+git pull
