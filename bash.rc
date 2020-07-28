@@ -3,6 +3,7 @@
 # Bash Fragment: Oliver 'kfs1' Smith's main bash profile.
 
 env_source="${HOME}/etc"
+source "${env_source}/bashlib.sh"
 
 # If a machine-local profile exists, execute it first.
 if [ -f "${env_source}/profile" ]; then
@@ -12,7 +13,7 @@ fi
 # Execute any scripts that are installed in the bash.rc.d folder
 rc_dir="${env_source}/bash.rc.d"
 if [ -d "${rc_dir}" ]; then
-  for file in "${rc_dir}"/*; do
+  for file in "${rc_dir}"/*.rc; do
     . "${file}"
   done
 fi

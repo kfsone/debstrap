@@ -29,10 +29,13 @@ sudo -v || die "Don't have sudo permission."
 info Configuring environment
 cd "${HOME}" || die "Couldn't access $HOME."
 
+if [ "${DEBUG:-0}" -gt 1 ]; then
+	set -x
+fi
 
 config_d="${env_source}/config.d"
-if [ -e "${config_d}" -a -n "$(ls ${config_d})" ]; then
-    for config in "${config_d}"/*; do
+if [ -e "${config_d}" ]; then
+    for config in "${config_d}"/*.rc; do
 	debug "${config}"
         source $config || die "${config} failed"
     done

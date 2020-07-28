@@ -8,5 +8,6 @@ python3-dev
 tmux
 vim
 vim-doc
+vim-editorconfig
 vim-scripts
 virtualenv

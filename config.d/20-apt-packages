@@ -1,8 +1,0 @@
-# Refresh apt packages
-if [ -f "${env_source}/apt-packages" ]; then
-  debug "Updating apt packages."
-  apt_update
-  sudo apt install -qy --upgrade $(cat "${env_source}/apt-packages") || die "Apt install failed."
-  sudo apt autoremove --purge || die "Apt autoremove failed."
-fi
-

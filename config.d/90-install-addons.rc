@@ -1,0 +1,10 @@
+function add_vim_addon () {
+	local addon="${1}"
+	addon_status="$(vim-addon-manager status --query "${addon}" | awk '{print $2}')"
+	if [ "${addon_status}" != "installed" ]; then
+		debug "Installing vim addon '${addon}'"
+		vim-addon-manager install "${addon}"
+	fi
+}
+
+add_vim_addon editorconfig

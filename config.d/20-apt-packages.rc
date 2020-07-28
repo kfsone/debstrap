@@ -1,0 +1,13 @@
+# Refresh apt packages
+apt_list_file="${env_source}/config.d/my.apt-packages.txt"
+if [ ! -f "${apt_list_file}" ]; then
+	die "Missing ${apt_list_file}"
+fi
+
+apt_packages="$(cat "${apt_list_file}")"
+if [ -n "${apt_packages}" ]; then
+  debug "Updating apt packages."
+  sudo apt install -qy --upgrade $apt_packages || die "Apt install failed."
+fi
+
+sudo apt autoremove -q --purge || die "Apt autoremove failed."
