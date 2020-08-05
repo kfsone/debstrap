@@ -15,5 +15,10 @@ RUN mkdir -p /root/etc
 COPY . /root/etc
 RUN bash /root/etc/BOOTSTRAP
 
-FROM configure
+FROM configure AS cleanup
+RUN apt autoremove --purge -qy
+RUN apt clean all -qy
+RUN rm -rf /var/lib/apt/lists/*
 
+FROM cleanup
+ENTRYPOINT ["/bin/bash"]
