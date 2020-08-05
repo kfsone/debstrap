@@ -7,7 +7,7 @@ fi
 apt_packages="$(cat "${apt_list_file}")"
 if [ -n "${apt_packages}" ]; then
   debug "Updating apt packages."
-  sudo apt install -qy --upgrade $apt_packages || die "Apt install failed."
+  as_root apt install -qy --upgrade $apt_packages || die "Apt install failed."
 fi
 
-sudo apt autoremove -q --purge || die "Apt autoremove failed."
+as_root apt autoremove -q --purge || die "Apt autoremove failed."

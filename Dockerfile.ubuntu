@@ -1,0 +1,19 @@
+FROM ubuntu:latest AS base
+
+# On my home network, the network apt proxy is wafer.lan
+RUN echo 'Acquire::http::Proxy "http://wafer.lan:3142/";' >/etc/apt/apt.conf.d/02proxy
+
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+RUN apt-get update
+RUN apt-get install -y --upgrade apt-transport-https apt-utils
+RUN apt-get upgrade -y
+
+FROM base AS configure
+
+RUN mkdir -p /root/etc
+COPY . /root/etc
+RUN bash /root/etc/BOOTSTRAP
+
+FROM configure
+
