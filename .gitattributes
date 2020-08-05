@@ -1,0 +1,3 @@
+BOOTSTRAP text eol=lf
+*.{txt,sh,rc} text eol=lf
+my.{flake8,vimrc} text eol=lf
