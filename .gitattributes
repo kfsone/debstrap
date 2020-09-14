@@ -1,5 +1,7 @@
 BOOTSTRAP text eol=lf
-*.{txt,sh,rc} text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.rc text eol=lf
 my.{flake8,vimrc} text eol=lf
 .git{attributes,ignore} text eol=native
 .dockerignore text eol=native

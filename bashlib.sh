@@ -48,7 +48,7 @@ function success () {
 
 # Add one or more paths to the PATH variable and export the result,
 # unless '-x' is specified.
-#
+
 function add_paths () {
   local added=0
   local do_export=1

@@ -7,7 +7,7 @@ env_source="${ENV_SOURCE:-${HOME}/etc}"
 apt_updated=0
 
 # Load bash helpers
-source "${env_source}/bashlib.sh" || die "Cannot load bashlib."
+source "${env_source}/bashlib.sh" || { echo "Can't load bashlib: $?"; exit 22; }
 
 # Helpers
 
