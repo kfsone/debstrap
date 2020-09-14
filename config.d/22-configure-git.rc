@@ -1,3 +1,4 @@
 git config --global user.email 'oliver@kfs.org'
 git config --global user.name "Oliver 'kfsone' Smith"
+git config --global pull.rebase false
 

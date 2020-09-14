@@ -1,4 +1,4 @@
-ctags
+exuberant-ctags
 git
 git-extras
 man
